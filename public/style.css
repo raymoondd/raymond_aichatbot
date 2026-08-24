@@ -21,7 +21,7 @@
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-body {
+/* body {
   background: var(--bg-gradient);
   color: var(--text-primary);
   min-height: 100vh;
@@ -29,12 +29,41 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+} */
+
+/* Update body to use dynamic viewport height */
+body {
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh; /* Adapts dynamically to mobile browsers */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 0;
 }
+
+/* .chat-container {
+  width: 100%;
+  max-width: 850px;
+  height: 90vh;
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+} */
 
 .chat-container {
   width: 100%;
   max-width: 850px;
   height: 90vh;
+  height: 90dvh; /* Prevents overflow when keyboard opens */
   background: var(--panel-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -289,7 +318,13 @@ textarea::placeholder { color: var(--text-secondary); }
 .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
 @media (max-width: 640px) {
-  body { padding: 0; }
-  .chat-container { height: 100vh; border-radius: 0; border: none; }
-  .message { max-width: 90%; }
+  body { 
+    padding: 0; 
+  }
+  .chat-container { 
+    height: 100vh; 
+    height: 100dvh; /* Full height of visible screen area */
+    border-radius: 0; 
+    border: none; 
+  }
 }
