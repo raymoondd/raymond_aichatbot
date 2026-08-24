@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sendBtn = document.getElementById('send-btn');
   const clearBtn = document.getElementById('clear-btn');
   const typingIndicator = document.getElementById('typing-indicator');
+  const API_URL = 'https://raymond-aichatbot-backend-1.onrender.com/api/chat';
 
   // Maintain local context history
   let conversationHistory = [];
@@ -39,12 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setLoadingState(true);
 
     try {
-      const response = await fetch('https://raymond-aichatbot-backend-1.onrender.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: conversationHistory }),
-      });
-
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ messages: conversationHistory }),
+          });
       const data = await response.json();
 
       if (!response.ok) {
