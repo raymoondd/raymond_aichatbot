@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLoadingState(true);
 
     try {
-      const response = await fetch('https://raymond-aichatbot-backend.onrender.com', {
+      const response = await fetch('https://raymond-aichatbot-backend-1.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: conversationHistory }),
