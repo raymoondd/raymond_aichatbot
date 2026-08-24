@@ -16,6 +16,26 @@ document.addEventListener('DOMContentLoaded', () => {
     userInput.style.height = `${Math.min(userInput.scrollHeight, 120)}px`;
   });
 
+  // Keep input visible on mobile soft keyboard open
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', () => {
+    // Scroll window to visual viewport top when keyboard resizes screen
+    window.scrollTo(0, 0);
+    // Scroll chat to the bottom to keep input and newest messages visible
+    const chatMessages = document.getElementById('chat-messages');
+    if (chatMessages) {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  });
+}
+
+// Ensure smooth focus handling on text input
+userInput.addEventListener('focus', () => {
+  setTimeout(() => {
+    userInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 300);
+});
+
   // Handle Enter key submit (Shift+Enter for newline)
   userInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
